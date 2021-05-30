@@ -1,4 +1,5 @@
 parkinglot/bin/*
 parkinglot/obj/*
 parkinglot/.vs/*
-
+parkinglottests/bin/*
+parkinglottests/obj/*
