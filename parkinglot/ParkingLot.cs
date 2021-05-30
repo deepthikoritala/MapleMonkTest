@@ -34,6 +34,7 @@ namespace parkinglot
                 case CommandType.park:
                     if (args.Length < 3) {
                         Console.WriteLine("Invalids argument for command"+ command);
+                        return;
                     }
                     Park(args[1],args[2]);
                     break;
@@ -41,6 +42,7 @@ namespace parkinglot
                     if (args.Length < 2)
                     {
                         Console.WriteLine("Invalids argument for command" + command);
+                        return;
                     }
                     Leave(Convert.ToInt32(args[1]));
                     break;
@@ -48,9 +50,11 @@ namespace parkinglot
                     if (args.Length < 2)
                     {
                         Console.WriteLine("Invalids argument for command" + command);
+                        return;
                     }
                     AvailableSpace = Convert.ToInt32(args[1]);
                     ParkedVehicles = new SortedList<int, Vehicle>();
+                    Console.WriteLine("Created a parking lot with "+AvailableSpace+" slots");
                     break;
                 case CommandType.status:
 
@@ -60,6 +64,7 @@ namespace parkinglot
                     if (args.Length < 2)
                     {
                         Console.WriteLine("Invalids argument for command" + command);
+                        return;
                     }
                     GetRegNumbersForCarsWithColour(args[1]);
                     break;
@@ -67,6 +72,7 @@ namespace parkinglot
                     if (args.Length < 2)
                     {
                         Console.WriteLine("Invalids argument for command" + command);
+                        return;
                     }
                     GetSlotNumbersForCarsWithColour(args[1]);
                     break;
@@ -74,6 +80,7 @@ namespace parkinglot
                     if (args.Length < 2)
                     {
                         Console.WriteLine("Invalids argument for command" + command);
+                        return;
                     }
                     GetSlotNumbersForCarsWithRegNum(args[1]);
                     break;
@@ -100,6 +107,7 @@ namespace parkinglot
                 SlotNumber = GetFreeSlot()
             });
             Console.WriteLine("Allocated slot number: " + slot);
+            Console.WriteLine();
         }
 
         public static void Leave(int slotNumber)
@@ -113,12 +121,14 @@ namespace parkinglot
             {
                 Console.WriteLine("Invalid slot number: " + slotNumber);
             }
+            Console.WriteLine();
 
         }
 
         public static void Status()
         {
             Console.WriteLine("Slot no.\tRegistration No.\tColour");
+            Console.WriteLine();
 
             foreach (KeyValuePair<int, Vehicle> vehicle in ParkedVehicles)
             {
@@ -126,6 +136,7 @@ namespace parkinglot
                 Console.WriteLine(vehicle.Key + "\t\t" + vehicle.Value.RegistrationNumber + "\t\t" + vehicle.Value.Color);
 
             }
+            Console.WriteLine();
 
         }
 
@@ -136,11 +147,14 @@ namespace parkinglot
             Console.WriteLine();
             if (regNums.Length == 0) {
                 Console.WriteLine("Not Found");
+                return;
             }
-            foreach (string regNum in regNums)
+            Console.Write(regNums[0]);
+            for (int i = 1; i < regNums.Length; i++)
             {
-                Console.Write(", " + regNum);
+                Console.Write(", " + regNums[i]);
             }
+            Console.WriteLine();
 
         }
         public static void GetSlotNumbersForCarsWithColour(string colour)
@@ -151,11 +165,14 @@ namespace parkinglot
             if (slotNum.Length == 0)
             {
                 Console.WriteLine("Not Found");
+                return;
             }
-            foreach (int slot in slotNum)
+            Console.Write(slotNum[0]);
+            for (int i = 1; i < slotNum.Length; i++)
             {
-                Console.Write(", " + slot);
+                Console.Write(", " + slotNum[i]);
             }
+            Console.WriteLine();
 
         }
         public static void GetSlotNumbersForCarsWithRegNum(string regNum)
@@ -165,11 +182,14 @@ namespace parkinglot
             if (slotNum.Length == 0)
             {
                 Console.WriteLine("Not Found");
+                return;
             }
-            foreach (int slot in slotNum)
+            Console.Write(slotNum[0]);
+            for (int i = 1; i < slotNum.Length; i++)
             {
-                Console.Write(", " + slot);
+                Console.Write(", " + slotNum[i]);
             }
+            Console.WriteLine();
 
         }
 
